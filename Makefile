@@ -21,6 +21,7 @@ dependencies:
 	go get -u github.com/julienschmidt/httprouter
 	go get -u github.com/inconshreveable/go-update
 	go get -u github.com/kardianos/osext
+	go get -u github.com/inconshreveable/mousetrap
 	# Frontend Dependencies
 	go get -u github.com/bgentry/speakeasy
 	go get -u github.com/spf13/cobra/...
@@ -78,6 +79,8 @@ test-v:
 	go test -race -v -short -tags='debug testing' -timeout=15s $(pkgs) -run=$(run)
 test-long: clean fmt vet lint
 	go test -v -race -tags='testing debug' -timeout=500s $(pkgs) -run=$(run)
+test-vlong: clean fmt vet lint
+	go test -v -race -tags='testing debug vlong' -timeout=5000s $(pkgs) -run=$(run)
 test-cpu:
 	go test -v -tags='testing debug' -timeout=500s -cpuprofile cpu.prof $(pkgs) -run=$(run)
 test-mem:
